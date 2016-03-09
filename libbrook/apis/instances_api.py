@@ -144,7 +144,7 @@ class InstancesApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str project_id: Project identifier (required)
-        :return: Instance
+        :return: list[Instance]
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -200,7 +200,7 @@ class InstancesApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type='Instance',
+                                            response_type='list[Instance]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
@@ -791,7 +791,7 @@ class InstancesApi(object):
             for asynchronous request. (optional)
         :param str project_id: Project identifier (required)
         :param str instance_id: Instance identifier (required)
-        :return: None
+        :return: InstanceStatus
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -852,7 +852,7 @@ class InstancesApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type=None,
+                                            response_type='InstanceStatus',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

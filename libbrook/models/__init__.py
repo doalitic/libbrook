@@ -8,6 +8,7 @@ from .image import Image
 from .instance import Instance
 from .instance_fw_allow import InstanceFwAllow
 from .instance_network_address import InstanceNetworkAddress
+from .instance_status import InstanceStatus
 from .key import Key
 from .mapping import Mapping
 from .project import Project

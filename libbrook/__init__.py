@@ -8,6 +8,7 @@ from .models.image import Image
 from .models.instance import Instance
 from .models.instance_fw_allow import InstanceFwAllow
 from .models.instance_network_address import InstanceNetworkAddress
+from .models.instance_status import InstanceStatus
 from .models.key import Key
 from .models.mapping import Mapping
 from .models.project import Project
