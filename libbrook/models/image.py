@@ -81,7 +81,7 @@ class Image(object):
     def os_name(self):
         """
         Gets the os_name of this Image.
-        Operating system name (e.g. ‘Debian’, ‘Ubuntu’, ‘CentOS’, etc).
+        Operating system name (e.g. \u2018Debian\u2019, \u2018Ubuntu\u2019, \u2018CentOS\u2019, etc).
 
         :return: The os_name of this Image.
         :rtype: str
@@ -92,7 +92,7 @@ class Image(object):
     def os_name(self, os_name):
         """
         Sets the os_name of this Image.
-        Operating system name (e.g. ‘Debian’, ‘Ubuntu’, ‘CentOS’, etc).
+        Operating system name (e.g. \u2018Debian\u2019, \u2018Ubuntu\u2019, \u2018CentOS\u2019, etc).
 
         :param os_name: The os_name of this Image.
         :type: str

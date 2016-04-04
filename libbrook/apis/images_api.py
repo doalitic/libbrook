@@ -45,7 +45,7 @@ class ImagesApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def index_images(self, provider_id, region_id, **kwargs):
+    def index_images(self, project_id, provider_id, region_id, **kwargs):
         """
         List images
         Retrieve the list of images available at region region of provider provider. This list is likely a small subset of the images available at a provider.
@@ -56,10 +56,11 @@ class ImagesApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.index_images(provider_id, region_id, callback=callback_function)
+        >>> thread = api.index_images(project_id, provider_id, region_id, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
+        :param str project_id: Project identifier (required)
         :param str provider_id: Provider identifier (required)
         :param str region_id: Region identifier (required)
         :return: list[Image]
@@ -67,7 +68,7 @@ class ImagesApi(object):
                  returns the request thread.
         """
 
-        all_params = ['provider_id', 'region_id']
+        all_params = ['project_id', 'provider_id', 'region_id']
         all_params.append('callback')
 
         params = locals()
@@ -80,6 +81,9 @@ class ImagesApi(object):
             params[key] = val
         del params['kwargs']
 
+        # verify the required parameter 'project_id' is set
+        if ('project_id' not in params) or (params['project_id'] is None):
+            raise ValueError("Missing the required parameter `project_id` when calling `index_images`")
         # verify the required parameter 'provider_id' is set
         if ('provider_id' not in params) or (params['provider_id'] is None):
             raise ValueError("Missing the required parameter `provider_id` when calling `index_images`")
@@ -87,8 +91,10 @@ class ImagesApi(object):
         if ('region_id' not in params) or (params['region_id'] is None):
             raise ValueError("Missing the required parameter `region_id` when calling `index_images`")
 
-        resource_path = '/v1/providers/{providerId}/regions/{regionId}/images'.replace('{format}', 'json')
+        resource_path = '/v1/projects/{projectId}/providers/{providerId}/regions/{regionId}/images'.replace('{format}', 'json')
         path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']
         if 'provider_id' in params:
             path_params['providerId'] = params['provider_id']
         if 'region_id' in params:
@@ -124,6 +130,101 @@ class ImagesApi(object):
                                             post_params=form_params,
                                             files=local_var_files,
                                             response_type='list[Image]',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def show_image(self, project_id, provider_id, region_id, image_id, **kwargs):
+        """
+        Retrieve image details
+        Retrieve the referred image available at the referred region of the referred provider.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.show_image(project_id, provider_id, region_id, image_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str project_id: Project identifier (required)
+        :param str provider_id: Provider identifier (required)
+        :param str region_id: Region identifier (required)
+        :param str image_id: Image identifier (required)
+        :return: Image
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'provider_id', 'region_id', 'image_id']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method show_image" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'project_id' is set
+        if ('project_id' not in params) or (params['project_id'] is None):
+            raise ValueError("Missing the required parameter `project_id` when calling `show_image`")
+        # verify the required parameter 'provider_id' is set
+        if ('provider_id' not in params) or (params['provider_id'] is None):
+            raise ValueError("Missing the required parameter `provider_id` when calling `show_image`")
+        # verify the required parameter 'region_id' is set
+        if ('region_id' not in params) or (params['region_id'] is None):
+            raise ValueError("Missing the required parameter `region_id` when calling `show_image`")
+        # verify the required parameter 'image_id' is set
+        if ('image_id' not in params) or (params['image_id'] is None):
+            raise ValueError("Missing the required parameter `image_id` when calling `show_image`")
+
+        resource_path = '/v1/projects/{projectId}/providers/{providerId}/regions/{regionId}/images/{imageId}'.replace('{format}', 'json')
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']
+        if 'provider_id' in params:
+            path_params['providerId'] = params['provider_id']
+        if 'region_id' in params:
+            path_params['regionId'] = params['region_id']
+        if 'image_id' in params:
+            path_params['imageId'] = params['image_id']
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'GET',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='Image',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

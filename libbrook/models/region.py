@@ -56,7 +56,7 @@ class Region(object):
     def id(self):
         """
         Gets the id of this Region.
-        Region id (e.g. ‘eu-west-1’ for Ireland in Amazon EC2).
+        Region id (e.g. \u2018eu-west-1\u2019 for Ireland in Amazon EC2).
 
         :return: The id of this Region.
         :rtype: str
@@ -67,7 +67,7 @@ class Region(object):
     def id(self, id):
         """
         Sets the id of this Region.
-        Region id (e.g. ‘eu-west-1’ for Ireland in Amazon EC2).
+        Region id (e.g. \u2018eu-west-1\u2019 for Ireland in Amazon EC2).
 
         :param id: The id of this Region.
         :type: str

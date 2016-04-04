@@ -45,10 +45,10 @@ class UsersApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def auth_login(self, user, **kwargs):
+    def index_users(self, **kwargs):
         """
-        Log in
-        Logs in a user into the system.
+        List users
+        Retrieve the list of users in the organization.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -56,17 +56,16 @@ class UsersApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.auth_login(user, callback=callback_function)
+        >>> thread = api.index_users(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param AuthLoginRequest user: User login data (required)
-        :return: None
+        :return: list[User]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['user']
+        all_params = []
         all_params.append('callback')
 
         params = locals()
@@ -74,16 +73,13 @@ class UsersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method auth_login" % key
+                    " to method index_users" % key
                 )
             params[key] = val
         del params['kwargs']
 
-        # verify the required parameter 'user' is set
-        if ('user' not in params) or (params['user'] is None):
-            raise ValueError("Missing the required parameter `user` when calling `auth_login`")
 
-        resource_path = '/v1/login'.replace('{format}', 'json')
+        resource_path = '/v1/users'.replace('{format}', 'json')
         path_params = {}
 
         query_params = {}
@@ -94,8 +90,6 @@ class UsersApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'user' in params:
-            body_params = params['user']
 
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
@@ -110,22 +104,22 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = []
 
-        response = self.api_client.call_api(resource_path, 'POST',
+        response = self.api_client.call_api(resource_path, 'GET',
                                             path_params,
                                             query_params,
                                             header_params,
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type=None,
+                                            response_type='list[User]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
 
-    def auth_register(self, user, **kwargs):
+    def show_user(self, user_id, **kwargs):
         """
-        Register new account
-        Creates a new organization and a new user in the system.
+        Show user details
+        Retrieve the details of a user.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -133,17 +127,17 @@ class UsersApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.auth_register(user, callback=callback_function)
+        >>> thread = api.show_user(user_id, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param AuthRegisterRequest user: New user data (required)
-        :return: None
+        :param str user_id: User identifier (required)
+        :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['user']
+        all_params = ['user_id']
         all_params.append('callback')
 
         params = locals()
@@ -151,17 +145,19 @@ class UsersApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method auth_register" % key
+                    " to method show_user" % key
                 )
             params[key] = val
         del params['kwargs']
 
-        # verify the required parameter 'user' is set
-        if ('user' not in params) or (params['user'] is None):
-            raise ValueError("Missing the required parameter `user` when calling `auth_register`")
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params) or (params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `show_user`")
 
-        resource_path = '/v1/register'.replace('{format}', 'json')
+        resource_path = '/v1/users/{userId}'.replace('{format}', 'json')
         path_params = {}
+        if 'user_id' in params:
+            path_params['userId'] = params['user_id']
 
         query_params = {}
 
@@ -171,8 +167,6 @@ class UsersApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'user' in params:
-            body_params = params['user']
 
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
@@ -187,14 +181,85 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = []
 
-        response = self.api_client.call_api(resource_path, 'POST',
+        response = self.api_client.call_api(resource_path, 'GET',
                                             path_params,
                                             query_params,
                                             header_params,
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type=None,
+                                            response_type='User',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def stats_users(self, **kwargs):
+        """
+        Get user statistics
+        Retrieve the statistics of available users in the organization.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.stats_users(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: StatsUser
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method stats_users" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+
+        resource_path = '/v1/stats/users'.replace('{format}', 'json')
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'GET',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='StatsUser',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

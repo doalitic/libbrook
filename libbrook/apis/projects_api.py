@@ -45,6 +45,89 @@ class ProjectsApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
+    def add_user_to_project(self, project_id, user, **kwargs):
+        """
+        Add user to project
+        Makes a user to join a project.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.add_user_to_project(project_id, user, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str project_id: Project identifier (required)
+        :param AddUserToProjectRequest user: User data (required)
+        :return: User
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'user']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method add_user_to_project" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'project_id' is set
+        if ('project_id' not in params) or (params['project_id'] is None):
+            raise ValueError("Missing the required parameter `project_id` when calling `add_user_to_project`")
+        # verify the required parameter 'user' is set
+        if ('user' not in params) or (params['user'] is None):
+            raise ValueError("Missing the required parameter `user` when calling `add_user_to_project`")
+
+        resource_path = '/v1/projects/{projectId}/users'.replace('{format}', 'json')
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'user' in params:
+            body_params = params['user']
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'POST',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='User',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
     def create_project(self, project, **kwargs):
         """
         Create project
@@ -199,6 +282,77 @@ class ProjectsApi(object):
                                             callback=params.get('callback'))
         return response
 
+    def index_project_users(self, **kwargs):
+        """
+        List project users
+        Retrieve the list of users in a project.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.index_project_users(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: list[User]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method index_project_users" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+
+        resource_path = '/v1/projects/{projectId}/users'.replace('{format}', 'json')
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'GET',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='list[User]',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
     def index_projects(self, **kwargs):
         """
         List projects
@@ -266,6 +420,89 @@ class ProjectsApi(object):
                                             post_params=form_params,
                                             files=local_var_files,
                                             response_type='list[Project]',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def remove_user_from_project(self, project_id, user_id, **kwargs):
+        """
+        Remove user from project
+        Disassociates a user from a project.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.remove_user_from_project(project_id, user_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str project_id: Project identifier (required)
+        :param str user_id: User identifier (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'user_id']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method remove_user_from_project" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'project_id' is set
+        if ('project_id' not in params) or (params['project_id'] is None):
+            raise ValueError("Missing the required parameter `project_id` when calling `remove_user_from_project`")
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params) or (params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `remove_user_from_project`")
+
+        resource_path = '/v1/projects/{projectId}/users/{userId}'.replace('{format}', 'json')
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']
+        if 'user_id' in params:
+            path_params['userId'] = params['user_id']
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'DELETE',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type=None,
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

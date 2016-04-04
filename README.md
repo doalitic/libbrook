@@ -3,7 +3,7 @@
 Python client library for [Brook.io](https://brook.io)
 
 
-## Requirements.
+## Requirements
 
 Python 2.7 and later. Tested on 2.7 and 3.4.
 
