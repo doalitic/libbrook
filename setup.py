@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "libbrook"
-VERSION = "0.3"
+VERSION = "0.4"
 
 
 

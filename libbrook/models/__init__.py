@@ -5,13 +5,15 @@ from .add_user_to_project_request import AddUserToProjectRequest
 from .auth_activate_request import AuthActivateRequest
 from .auth_join_request import AuthJoinRequest
 from .auth_login_request import AuthLoginRequest
+from .auth_login_response import AuthLoginResponse
 from .auth_register_request import AuthRegisterRequest
 from .auth_token_request import AuthTokenRequest
+from .auth_token_response import AuthTokenResponse
 from .credential import Credential
 from .image import Image
 from .instance import Instance
-from .instance_fw_allow import InstanceFwAllow
 from .instance_network_address import InstanceNetworkAddress
+from .instance_rules import InstanceRules
 from .instance_status import InstanceStatus
 from .invitation import Invitation
 from .key import Key

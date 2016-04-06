@@ -215,7 +215,7 @@ class AuthApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param AuthLoginRequest user: User login data (required)
-        :return: None
+        :return: AuthLoginResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -271,7 +271,7 @@ class AuthApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type=None,
+                                            response_type='AuthLoginResponse',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
@@ -369,7 +369,7 @@ class AuthApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param AuthTokenRequest token: Refresh token data (required)
-        :return: Token
+        :return: AuthTokenResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -425,7 +425,7 @@ class AuthApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type='Token',
+                                            response_type='AuthTokenResponse',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

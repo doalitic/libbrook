@@ -38,7 +38,7 @@ class Invitation(object):
         """
         self.swagger_types = {
             'id': 'str',
-            'organization_id': 'str',
+            'organization': 'str',
             'email': 'str',
             'expires_at': 'str',
             'created_at': 'str',
@@ -47,7 +47,7 @@ class Invitation(object):
 
         self.attribute_map = {
             'id': 'id',
-            'organization_id': 'organization_id',
+            'organization': 'organization',
             'email': 'email',
             'expires_at': 'expires_at',
             'created_at': 'created_at',
@@ -55,7 +55,7 @@ class Invitation(object):
         }
 
         self._id = None
-        self._organization_id = None
+        self._organization = None
         self._email = None
         self._expires_at = None
         self._created_at = None
@@ -84,26 +84,26 @@ class Invitation(object):
         self._id = id
 
     @property
-    def organization_id(self):
+    def organization(self):
         """
-        Gets the organization_id of this Invitation.
+        Gets the organization of this Invitation.
         Organization id
 
-        :return: The organization_id of this Invitation.
+        :return: The organization of this Invitation.
         :rtype: str
         """
-        return self._organization_id
+        return self._organization
 
-    @organization_id.setter
-    def organization_id(self, organization_id):
+    @organization.setter
+    def organization(self, organization):
         """
-        Sets the organization_id of this Invitation.
+        Sets the organization of this Invitation.
         Organization id
 
-        :param organization_id: The organization_id of this Invitation.
+        :param organization: The organization of this Invitation.
         :type: str
         """
-        self._organization_id = organization_id
+        self._organization = organization
 
     @property
     def email(self):

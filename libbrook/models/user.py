@@ -41,7 +41,9 @@ class User(object):
             'name': 'str',
             'email': 'str',
             'active': 'bool',
-            'roles': 'list[Role]'
+            'roles': 'list[Role]',
+            'organization': 'str',
+            'created_at': 'str'
         }
 
         self.attribute_map = {
@@ -49,7 +51,9 @@ class User(object):
             'name': 'name',
             'email': 'email',
             'active': 'active',
-            'roles': 'roles'
+            'roles': 'roles',
+            'organization': 'organization',
+            'created_at': 'created_at'
         }
 
         self._id = None
@@ -57,6 +61,8 @@ class User(object):
         self._email = None
         self._active = None
         self._roles = None
+        self._organization = None
+        self._created_at = None
 
     @property
     def id(self):
@@ -167,6 +173,50 @@ class User(object):
         :type: list[Role]
         """
         self._roles = roles
+
+    @property
+    def organization(self):
+        """
+        Gets the organization of this User.
+        User organization identifier
+
+        :return: The organization of this User.
+        :rtype: str
+        """
+        return self._organization
+
+    @organization.setter
+    def organization(self, organization):
+        """
+        Sets the organization of this User.
+        User organization identifier
+
+        :param organization: The organization of this User.
+        :type: str
+        """
+        self._organization = organization
+
+    @property
+    def created_at(self):
+        """
+        Gets the created_at of this User.
+        User creation timestamp
+
+        :return: The created_at of this User.
+        :rtype: str
+        """
+        return self._created_at
+
+    @created_at.setter
+    def created_at(self, created_at):
+        """
+        Sets the created_at of this User.
+        User creation timestamp
+
+        :param created_at: The created_at of this User.
+        :type: str
+        """
+        self._created_at = created_at
 
     def to_dict(self):
         """

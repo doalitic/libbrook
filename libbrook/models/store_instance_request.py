@@ -45,7 +45,7 @@ class StoreInstanceRequest(object):
             'region': 'str',
             'image': 'str',
             'key': 'str',
-            'fw_allow': 'list[InstanceFwAllow]',
+            'rules': 'list[InstanceRules]',
             'project': 'str'
         }
 
@@ -58,7 +58,7 @@ class StoreInstanceRequest(object):
             'region': 'region',
             'image': 'image',
             'key': 'key',
-            'fw_allow': 'fw_allow',
+            'rules': 'rules',
             'project': 'project'
         }
 
@@ -70,7 +70,7 @@ class StoreInstanceRequest(object):
         self._region = None
         self._image = None
         self._key = None
-        self._fw_allow = None
+        self._rules = None
         self._project = None
 
     @property
@@ -250,26 +250,26 @@ class StoreInstanceRequest(object):
         self._key = key
 
     @property
-    def fw_allow(self):
+    def rules(self):
         """
-        Gets the fw_allow of this StoreInstanceRequest.
+        Gets the rules of this StoreInstanceRequest.
         List of tuples <proto, port_begin, port_end, source>
 
-        :return: The fw_allow of this StoreInstanceRequest.
-        :rtype: list[InstanceFwAllow]
+        :return: The rules of this StoreInstanceRequest.
+        :rtype: list[InstanceRules]
         """
-        return self._fw_allow
+        return self._rules
 
-    @fw_allow.setter
-    def fw_allow(self, fw_allow):
+    @rules.setter
+    def rules(self, rules):
         """
-        Sets the fw_allow of this StoreInstanceRequest.
+        Sets the rules of this StoreInstanceRequest.
         List of tuples <proto, port_begin, port_end, source>
 
-        :param fw_allow: The fw_allow of this StoreInstanceRequest.
-        :type: list[InstanceFwAllow]
+        :param rules: The rules of this StoreInstanceRequest.
+        :type: list[InstanceRules]
         """
-        self._fw_allow = fw_allow
+        self._rules = rules
 
     @property
     def project(self):

@@ -305,7 +305,7 @@ class InstancesApi(object):
             for asynchronous request. (optional)
         :param str project_id: Project identifier (required)
         :param str instance_id: Instance identifier (required)
-        :return: list[InstanceFwAllow]
+        :return: list[InstanceRules]
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -366,7 +366,7 @@ class InstancesApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type='list[InstanceFwAllow]',
+                                            response_type='list[InstanceRules]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
