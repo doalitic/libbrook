@@ -350,7 +350,7 @@ class KeysApi(object):
     def update_key(self, key_id, key, **kwargs):
         """
         Update key
-        Updates a ssh key for the sysadmin identified within the sub claim of the JWT..
+        Updates a ssh key for the sysadmin identified within the sub claim of the JWT.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function

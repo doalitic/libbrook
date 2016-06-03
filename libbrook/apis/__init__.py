@@ -7,6 +7,7 @@ from .images_api import ImagesApi
 from .instances_api import InstancesApi
 from .invitations_api import InvitationsApi
 from .keys_api import KeysApi
+from .nodes_api import NodesApi
 from .projects_api import ProjectsApi
 from .regions_api import RegionsApi
 from .templates_api import TemplatesApi

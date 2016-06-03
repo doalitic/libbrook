@@ -38,17 +38,20 @@ class Region(object):
         """
         self.swagger_types = {
             'id': 'str',
+            'zone': 'str',
             'endpoint': 'str',
             'country': 'str'
         }
 
         self.attribute_map = {
             'id': 'id',
+            'zone': 'zone',
             'endpoint': 'endpoint',
             'country': 'country'
         }
 
         self._id = None
+        self._zone = None
         self._endpoint = None
         self._country = None
 
@@ -73,6 +76,28 @@ class Region(object):
         :type: str
         """
         self._id = id
+
+    @property
+    def zone(self):
+        """
+        Gets the zone of this Region.
+        Availability zone id
+
+        :return: The zone of this Region.
+        :rtype: str
+        """
+        return self._zone
+
+    @zone.setter
+    def zone(self, zone):
+        """
+        Sets the zone of this Region.
+        Availability zone id
+
+        :param zone: The zone of this Region.
+        :type: str
+        """
+        self._zone = zone
 
     @property
     def endpoint(self):

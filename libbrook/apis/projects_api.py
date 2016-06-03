@@ -48,7 +48,7 @@ class ProjectsApi(object):
     def add_user_to_project(self, project_id, user, **kwargs):
         """
         Add user to project
-        Makes a user to join a project.
+        Adds a user to a project.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -131,7 +131,7 @@ class ProjectsApi(object):
     def create_project(self, project, **kwargs):
         """
         Create project
-        Create a new project associated with the organization and the user given in the do_org and sub\n     *     claim of the JWT.
+        Create a new project associated with the organization and the user given in the do_org and sub claim of the JWT.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function

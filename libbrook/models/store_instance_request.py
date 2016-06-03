@@ -39,45 +39,48 @@ class StoreInstanceRequest(object):
         self.swagger_types = {
             'name': 'str',
             'description': 'str',
-            'tags': 'list[str]',
+            'pid': 'str',
             'template': 'str',
             'provider': 'str',
             'region': 'str',
+            'zone': 'str',
             'image': 'str',
             'key': 'str',
             'rules': 'list[InstanceRules]',
-            'project': 'str'
+            'tags': 'list[str]'
         }
 
         self.attribute_map = {
             'name': 'name',
             'description': 'description',
-            'tags': 'tags',
+            'pid': 'pid',
             'template': 'template',
             'provider': 'provider',
             'region': 'region',
+            'zone': 'zone',
             'image': 'image',
             'key': 'key',
             'rules': 'rules',
-            'project': 'project'
+            'tags': 'tags'
         }
 
         self._name = None
         self._description = None
-        self._tags = None
+        self._pid = None
         self._template = None
         self._provider = None
         self._region = None
+        self._zone = None
         self._image = None
         self._key = None
         self._rules = None
-        self._project = None
+        self._tags = None
 
     @property
     def name(self):
         """
         Gets the name of this StoreInstanceRequest.
-        Instance name
+        Instance name.
 
         :return: The name of this StoreInstanceRequest.
         :rtype: str
@@ -88,7 +91,7 @@ class StoreInstanceRequest(object):
     def name(self, name):
         """
         Sets the name of this StoreInstanceRequest.
-        Instance name
+        Instance name.
 
         :param name: The name of this StoreInstanceRequest.
         :type: str
@@ -99,7 +102,7 @@ class StoreInstanceRequest(object):
     def description(self):
         """
         Gets the description of this StoreInstanceRequest.
-        Instance description (optional)
+        Instance description (optional).
 
         :return: The description of this StoreInstanceRequest.
         :rtype: str
@@ -110,7 +113,7 @@ class StoreInstanceRequest(object):
     def description(self, description):
         """
         Sets the description of this StoreInstanceRequest.
-        Instance description (optional)
+        Instance description (optional).
 
         :param description: The description of this StoreInstanceRequest.
         :type: str
@@ -118,32 +121,32 @@ class StoreInstanceRequest(object):
         self._description = description
 
     @property
-    def tags(self):
+    def pid(self):
         """
-        Gets the tags of this StoreInstanceRequest.
-        List of instance tags (optional)
+        Gets the pid of this StoreInstanceRequest.
+         Instance id at provider if binding an unmanaged instance, not provided when launching a new instance (optional).
 
-        :return: The tags of this StoreInstanceRequest.
-        :rtype: list[str]
+        :return: The pid of this StoreInstanceRequest.
+        :rtype: str
         """
-        return self._tags
+        return self._pid
 
-    @tags.setter
-    def tags(self, tags):
+    @pid.setter
+    def pid(self, pid):
         """
-        Sets the tags of this StoreInstanceRequest.
-        List of instance tags (optional)
+        Sets the pid of this StoreInstanceRequest.
+         Instance id at provider if binding an unmanaged instance, not provided when launching a new instance (optional).
 
-        :param tags: The tags of this StoreInstanceRequest.
-        :type: list[str]
+        :param pid: The pid of this StoreInstanceRequest.
+        :type: str
         """
-        self._tags = tags
+        self._pid = pid
 
     @property
     def template(self):
         """
         Gets the template of this StoreInstanceRequest.
-        Template id
+        Template id if creating an instance, not provided if binding an unmanaged instance to a project (optional).
 
         :return: The template of this StoreInstanceRequest.
         :rtype: str
@@ -154,7 +157,7 @@ class StoreInstanceRequest(object):
     def template(self, template):
         """
         Sets the template of this StoreInstanceRequest.
-        Template id
+        Template id if creating an instance, not provided if binding an unmanaged instance to a project (optional).
 
         :param template: The template of this StoreInstanceRequest.
         :type: str
@@ -165,7 +168,7 @@ class StoreInstanceRequest(object):
     def provider(self):
         """
         Gets the provider of this StoreInstanceRequest.
-        Provider id
+        Provider id.
 
         :return: The provider of this StoreInstanceRequest.
         :rtype: str
@@ -176,7 +179,7 @@ class StoreInstanceRequest(object):
     def provider(self, provider):
         """
         Sets the provider of this StoreInstanceRequest.
-        Provider id
+        Provider id.
 
         :param provider: The provider of this StoreInstanceRequest.
         :type: str
@@ -187,7 +190,7 @@ class StoreInstanceRequest(object):
     def region(self):
         """
         Gets the region of this StoreInstanceRequest.
-        Region id
+        Region id.
 
         :return: The region of this StoreInstanceRequest.
         :rtype: str
@@ -198,7 +201,7 @@ class StoreInstanceRequest(object):
     def region(self, region):
         """
         Sets the region of this StoreInstanceRequest.
-        Region id
+        Region id.
 
         :param region: The region of this StoreInstanceRequest.
         :type: str
@@ -206,10 +209,32 @@ class StoreInstanceRequest(object):
         self._region = region
 
     @property
+    def zone(self):
+        """
+        Gets the zone of this StoreInstanceRequest.
+        Availability zone id
+
+        :return: The zone of this StoreInstanceRequest.
+        :rtype: str
+        """
+        return self._zone
+
+    @zone.setter
+    def zone(self, zone):
+        """
+        Sets the zone of this StoreInstanceRequest.
+        Availability zone id
+
+        :param zone: The zone of this StoreInstanceRequest.
+        :type: str
+        """
+        self._zone = zone
+
+    @property
     def image(self):
         """
         Gets the image of this StoreInstanceRequest.
-        Image id
+         Image id if creating an instance, not provided if binding an unmanaged instance to a project (optional).
 
         :return: The image of this StoreInstanceRequest.
         :rtype: str
@@ -220,7 +245,7 @@ class StoreInstanceRequest(object):
     def image(self, image):
         """
         Sets the image of this StoreInstanceRequest.
-        Image id
+         Image id if creating an instance, not provided if binding an unmanaged instance to a project (optional).
 
         :param image: The image of this StoreInstanceRequest.
         :type: str
@@ -231,7 +256,7 @@ class StoreInstanceRequest(object):
     def key(self):
         """
         Gets the key of this StoreInstanceRequest.
-        SSH key id
+        SSH key id if creating an instance, not provided if binding an unmanaged instance to a project (optional).
 
         :return: The key of this StoreInstanceRequest.
         :rtype: str
@@ -242,7 +267,7 @@ class StoreInstanceRequest(object):
     def key(self, key):
         """
         Sets the key of this StoreInstanceRequest.
-        SSH key id
+        SSH key id if creating an instance, not provided if binding an unmanaged instance to a project (optional).
 
         :param key: The key of this StoreInstanceRequest.
         :type: str
@@ -253,7 +278,7 @@ class StoreInstanceRequest(object):
     def rules(self):
         """
         Gets the rules of this StoreInstanceRequest.
-        List of tuples <proto, port_begin, port_end, source>
+        List of tuples <proto, port_begin, port_end, source>.
 
         :return: The rules of this StoreInstanceRequest.
         :rtype: list[InstanceRules]
@@ -264,7 +289,7 @@ class StoreInstanceRequest(object):
     def rules(self, rules):
         """
         Sets the rules of this StoreInstanceRequest.
-        List of tuples <proto, port_begin, port_end, source>
+        List of tuples <proto, port_begin, port_end, source>.
 
         :param rules: The rules of this StoreInstanceRequest.
         :type: list[InstanceRules]
@@ -272,26 +297,26 @@ class StoreInstanceRequest(object):
         self._rules = rules
 
     @property
-    def project(self):
+    def tags(self):
         """
-        Gets the project of this StoreInstanceRequest.
-        Project id (optional, default = null for unmanaged instances)
+        Gets the tags of this StoreInstanceRequest.
+        List of instance tags (optional).
 
-        :return: The project of this StoreInstanceRequest.
-        :rtype: str
+        :return: The tags of this StoreInstanceRequest.
+        :rtype: list[str]
         """
-        return self._project
+        return self._tags
 
-    @project.setter
-    def project(self, project):
+    @tags.setter
+    def tags(self, tags):
         """
-        Sets the project of this StoreInstanceRequest.
-        Project id (optional, default = null for unmanaged instances)
+        Sets the tags of this StoreInstanceRequest.
+        List of instance tags (optional).
 
-        :param project: The project of this StoreInstanceRequest.
-        :type: str
+        :param tags: The tags of this StoreInstanceRequest.
+        :type: list[str]
         """
-        self._project = project
+        self._tags = tags
 
     def to_dict(self):
         """

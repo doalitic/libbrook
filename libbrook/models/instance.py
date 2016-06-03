@@ -38,11 +38,13 @@ class Instance(object):
         """
         self.swagger_types = {
             'id': 'str',
+            'pid': 'str',
             'name': 'str',
             'description': 'str',
             'template': 'str',
             'provider': 'str',
             'region': 'str',
+            'zone': 'str',
             'image': 'str',
             'key': 'str',
             'project': 'str',
@@ -52,11 +54,13 @@ class Instance(object):
 
         self.attribute_map = {
             'id': 'id',
+            'pid': 'pid',
             'name': 'name',
             'description': 'description',
             'template': 'template',
             'provider': 'provider',
             'region': 'region',
+            'zone': 'zone',
             'image': 'image',
             'key': 'key',
             'project': 'project',
@@ -65,11 +69,13 @@ class Instance(object):
         }
 
         self._id = None
+        self._pid = None
         self._name = None
         self._description = None
         self._template = None
         self._provider = None
         self._region = None
+        self._zone = None
         self._image = None
         self._key = None
         self._project = None
@@ -97,6 +103,28 @@ class Instance(object):
         :type: str
         """
         self._id = id
+
+    @property
+    def pid(self):
+        """
+        Gets the pid of this Instance.
+        Instance id at provider
+
+        :return: The pid of this Instance.
+        :rtype: str
+        """
+        return self._pid
+
+    @pid.setter
+    def pid(self, pid):
+        """
+        Sets the pid of this Instance.
+        Instance id at provider
+
+        :param pid: The pid of this Instance.
+        :type: str
+        """
+        self._pid = pid
 
     @property
     def name(self):
@@ -207,6 +235,28 @@ class Instance(object):
         :type: str
         """
         self._region = region
+
+    @property
+    def zone(self):
+        """
+        Gets the zone of this Instance.
+        Availability zone id
+
+        :return: The zone of this Instance.
+        :rtype: str
+        """
+        return self._zone
+
+    @zone.setter
+    def zone(self, zone):
+        """
+        Sets the zone of this Instance.
+        Availability zone id
+
+        :param zone: The zone of this Instance.
+        :type: str
+        """
+        self._zone = zone
 
     @property
     def image(self):

@@ -45,89 +45,6 @@ class InstancesApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def create_instance(self, project_id, instance, **kwargs):
-        """
-        Create instance
-        Launch an instance within the project and provider specified in the request.
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.create_instance(project_id, instance, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str project_id: Project identifier (required)
-        :param StoreInstanceRequest instance: New instance data (required)
-        :return: Instance
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['project_id', 'instance']
-        all_params.append('callback')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_instance" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-        # verify the required parameter 'project_id' is set
-        if ('project_id' not in params) or (params['project_id'] is None):
-            raise ValueError("Missing the required parameter `project_id` when calling `create_instance`")
-        # verify the required parameter 'instance' is set
-        if ('instance' not in params) or (params['instance'] is None):
-            raise ValueError("Missing the required parameter `instance` when calling `create_instance`")
-
-        resource_path = '/v1/projects/{projectId}/instances'.replace('{format}', 'json')
-        path_params = {}
-        if 'project_id' in params:
-            path_params['projectId'] = params['project_id']
-
-        query_params = {}
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'instance' in params:
-            body_params = params['instance']
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json'])
-
-        # Authentication setting
-        auth_settings = []
-
-        response = self.api_client.call_api(resource_path, 'POST',
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=local_var_files,
-                                            response_type='Instance',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'))
-        return response
-
     def index_instances(self, project_id, **kwargs):
         """
         List instance
@@ -450,6 +367,89 @@ class InstancesApi(object):
                                             post_params=form_params,
                                             files=local_var_files,
                                             response_type='list[str]',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def launch_instance(self, project_id, instance, **kwargs):
+        """
+        Launch instance
+        Launch an instance within the project and provider specified in the request. The instance is\n     created in our database and launched at the provider in the background. By means of a Pusher channel, the API\n     client may follow the progress of the task and be notified about any error. If the given resource already has a\n     pid, then it is assumed that the client wants to bind a currently unmanaged instance to the given project. Such\n     node is uniquely identified via the provider, region, pid triple. In this case template, image, and key cannot\n     be provided because such information is missing. Note that this operation just creates the instance within our\n     database, so provided rules and tags are ignored at the moment (not created at the provider). The\n     `X-Pusher-Channel` HTTP header indicates the name of the Pusher channel which will be used. The information inside\n     the events received via this channel will be in JSON. The JSON data itself is contained within a dictionary and\n     consists (at least) of a `code` field that uniquely identifies the event. Codes are inspired on HTTP response\n     codes and providers are implicit within the code:\n\n    * 1xxxx: Informative (progress notification). Event name: 'info'.\n    * 2xxxx: Successful final response. Event name: 'success'.\n    * 3xxxx: Successful temporary response. Event name: 'info'.\n    * 4xxxx: Client error. Event name: 'error'.\n    * 5xxxx: Server error. Event name: 'error'.\n\n    * x00xx: Generic error.\n    * x01xx: Amazon EC2.\n    * x02xx: Google Compute Engine.\n    
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.launch_instance(project_id, instance, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str project_id: Project identifier (required)
+        :param StoreInstanceRequest instance: New instance data (required)
+        :return: Instance
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'instance']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method launch_instance" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'project_id' is set
+        if ('project_id' not in params) or (params['project_id'] is None):
+            raise ValueError("Missing the required parameter `project_id` when calling `launch_instance`")
+        # verify the required parameter 'instance' is set
+        if ('instance' not in params) or (params['instance'] is None):
+            raise ValueError("Missing the required parameter `instance` when calling `launch_instance`")
+
+        resource_path = '/v1/projects/{projectId}/instances'.replace('{format}', 'json')
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'instance' in params:
+            body_params = params['instance']
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'POST',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='Instance',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
@@ -1012,6 +1012,89 @@ class InstancesApi(object):
         auth_settings = []
 
         response = self.api_client.call_api(resource_path, 'POST',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type=None,
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def unbind_instance(self, project_id, instance_id, **kwargs):
+        """
+        Unbind instance from project.
+        Unbind the given instance from the given project.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.unbind_instance(project_id, instance_id, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str project_id: Project identifier (required)
+        :param str instance_id: Instance identifier (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['project_id', 'instance_id']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method unbind_instance" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'project_id' is set
+        if ('project_id' not in params) or (params['project_id'] is None):
+            raise ValueError("Missing the required parameter `project_id` when calling `unbind_instance`")
+        # verify the required parameter 'instance_id' is set
+        if ('instance_id' not in params) or (params['instance_id'] is None):
+            raise ValueError("Missing the required parameter `instance_id` when calling `unbind_instance`")
+
+        resource_path = '/v1/projects/{projectId}/instances/{instanceId}'.replace('{format}', 'json')
+        path_params = {}
+        if 'project_id' in params:
+            path_params['projectId'] = params['project_id']
+        if 'instance_id' in params:
+            path_params['instanceId'] = params['instance_id']
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, 'DELETE',
                                             path_params,
                                             query_params,
                                             header_params,

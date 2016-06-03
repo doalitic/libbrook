@@ -18,6 +18,7 @@ from .instance_status import InstanceStatus
 from .invitation import Invitation
 from .key import Key
 from .mapping import Mapping
+from .node import Node
 from .project import Project
 from .region import Region
 from .role import Role

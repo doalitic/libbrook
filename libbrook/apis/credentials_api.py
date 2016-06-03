@@ -48,7 +48,7 @@ class CredentialsApi(object):
     def create_credential(self, provider_id, credential, **kwargs):
         """
         Create credential
-        Create a new credential for the provider provider_id associated with the organization given in the do_org claim of the JWT.
+        Create a new credential for the provider providerId associated with the organization given in the do_org claim of the JWT.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -131,7 +131,7 @@ class CredentialsApi(object):
     def destroy_credential(self, provider_id, credential_id, **kwargs):
         """
         Delete credential
-        Delete the credential credential_id for the provider provider_id associated with the organization given in the do_org claim of the JWT.
+        Delete the credential credential_id for the provider providerId associated with the organization given in the do_org claim of the JWT.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -297,7 +297,7 @@ class CredentialsApi(object):
     def index_credentials(self, provider_id, **kwargs):
         """
         List credentials
-        Retrieve the list of credentials for the provider provider_id associated with the organization given in the do_org claim of the JWT.
+        Retrieve the list of credentials for the provider providerId associated with the organization given in the do_org claim of the JWT.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -528,7 +528,7 @@ class CredentialsApi(object):
     def update_credential(self, provider_id, credential_id, credential, **kwargs):
         """
         Update credential
-        Updates a credential for the provider provider_id associated with the organization given in the do_org claim of the JWT.
+        Updates a credential for the provider providerId associated with the organization given in the do_org claim of the JWT.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function

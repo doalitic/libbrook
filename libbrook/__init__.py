@@ -18,6 +18,7 @@ from .models.instance_status import InstanceStatus
 from .models.invitation import Invitation
 from .models.key import Key
 from .models.mapping import Mapping
+from .models.node import Node
 from .models.project import Project
 from .models.region import Region
 from .models.role import Role
@@ -53,6 +54,7 @@ from .apis.images_api import ImagesApi
 from .apis.instances_api import InstancesApi
 from .apis.invitations_api import InvitationsApi
 from .apis.keys_api import KeysApi
+from .apis.nodes_api import NodesApi
 from .apis.projects_api import ProjectsApi
 from .apis.regions_api import RegionsApi
 from .apis.templates_api import TemplatesApi

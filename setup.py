@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "libbrook"
-VERSION = "0.4"
+VERSION = "0.5"
 
 
 
@@ -31,4 +31,5 @@ setup(
     Brook.io API for managing multi-provider cloud infrastructure
     """
 )
+
 
